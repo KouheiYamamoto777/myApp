@@ -1,0 +1,37 @@
+version: '3'
+
+volumes:
+    db-data:
+
+services:
+    web:
+        image: "nginx:${NGINX_VERSION}"
+        ports:
+            - '8000:80'
+        volumes:
+            - './docker/web/default.conf:/etc/nginx/conf.d/default.conf'
+            - '.:/var/www/html'
+        tty: true
+        stdin_open: true
+        # nginxとphpの依存関係を設定
+        depends_on:
+            - app
+    app:
+        build: './docker/php'
+        image: "php:${PHP_VERSION}"
+        volumes:
+            - './src:/var/www/html'
+        # phpとmysqlの依存関係を設定
+        depends_on:
+            - db
+    db:
+        image: "mysql:${MYSQL_VERSION}"
+        environment:
+            MYSQL_DATABASE: '${DATABASE}'
+            MYSQL_USER: '${DB_USER}'
+            MYSQL_PASSWORD: '${DB_PASS}'
+            MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASS}'
+        ports:
+            - '3306:3306'
+        volumes:
+            - 'db-data:/var/lib/mysql'
