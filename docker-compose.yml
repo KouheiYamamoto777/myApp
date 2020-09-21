@@ -20,7 +20,7 @@ services:
         build: './docker/php'
         image: "php:${PHP_VERSION}"
         volumes:
-            - './src:/var/www/html'
+            - '.:/var/www/html'
         # phpとmysqlの依存関係を設定
         depends_on:
             - db
