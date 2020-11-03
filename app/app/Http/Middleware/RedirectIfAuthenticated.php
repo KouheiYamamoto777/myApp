@@ -23,6 +23,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                // ログイン後のトップページにリダイレクトする処理
                 return redirect(RouteServiceProvider::HOME);
             }
         }
