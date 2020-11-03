@@ -44,7 +44,7 @@ class RecordController extends Controller
      */
     public function create()
     {
-        //
+        return view('records.create');
     }
 
     /**
@@ -103,8 +103,4 @@ class RecordController extends Controller
         //
     }
 
-    public function showUserProfile($id)
-    {
-        return view('records.profile', ['user' => $id]);
-    }
 }

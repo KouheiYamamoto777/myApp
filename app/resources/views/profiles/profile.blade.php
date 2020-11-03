@@ -7,5 +7,5 @@
 @section('content')
     @include('nav')
 
-    <h1>プロフィールへようこそ</h1>
+    <h1>ユーザープロフィール表示画面</h1>
 @endsection

@@ -23,12 +23,14 @@ Auth::routes();
 Route::get('/', [GuestController::class, 'index'])->name('guest.index');
 
 // 以下ログイン済ユーザー関係処理
-
 Route::name('profile.')->group(function() {
+
     // ユーザープロフィール表示処理(ログイン済ユーザードキュメントルート)
     Route::get('/profile/{id}', [ProfileController::class, 'showUserProfile'])->name('show_profile');
+
     // ユーザープロフィールカスタム画面表示処理
     Route::get('/profile/{id}/custom', [ProfileController::class, 'showProfileCustom'])->name('show_profile_custom');
+
     // ユーザープロフィールカスタム処理
     Route::post('/profile/{id}/custom', [ProfileController::class, 'updateProfileCustom'])->name('update_profile_custom');
 });

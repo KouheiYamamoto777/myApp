@@ -9,7 +9,7 @@
         @include('nav')
     
         <h1 class="h2">メインページ</h1>
-        <p>未ログインユーザーのドキュメントルート</p>
+        <p>ログイン済ユーザーのドキュメントルート</p>
         @forelse ($posts as $post)
             <div>
                 <div class="">
