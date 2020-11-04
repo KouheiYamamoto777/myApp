@@ -17,10 +17,13 @@
             <span>ログインユーザータイムラインプルダウン  </span><br>
             {{-- ログインユーザータイムラインプルダウン --}}
             <a href="{{ route('profile.show_profile', ['id' => 2]) }}" class="btn btn-brown btn-md" role="button">マイページ</a>
-            <a href="" class="btn btn-brown btn-md" role="button">
+            <button class="btn btn-brown btn-md" role="button" type="submit" form="logout-button">
                 <i class="fas fa-sign-out-alt"></i>
                 ログアウト
-            </a>
+            </button>
+            <form action="{{ route('logout') }}" method="post" id="logout-button">
+                @csrf
+            </form>
             <br>
         @endauth
 
@@ -40,10 +43,13 @@
                 <i class="fas fa-cog"></i>
                 カスタム
             </a>
-            <a href="" class="btn btn-brown btn-md" role="button">
+            <button class="btn btn-brown btn-md" role="button" type="submit" form="logout-button">
                 <i class="fas fa-sign-out-alt"></i>
                 ログアウト
-            </a>
+            </button>
+            <form action="{{ route('logout') }}" method="post" id="logout-button">
+                @csrf
+            </form>
             <br>
         @endauth
 
