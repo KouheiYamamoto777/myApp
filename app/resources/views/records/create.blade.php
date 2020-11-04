@@ -3,7 +3,7 @@
 @section('title', '記録を残す')
 
 @section('content')
-    @include('nav')
+    @include('navs.create')
 
     <h1 class="h2">2020年の記録</h1>
     <canvas>

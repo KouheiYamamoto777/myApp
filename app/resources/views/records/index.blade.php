@@ -6,10 +6,9 @@
 
 @section('content')
     <div class="container">
-        @include('nav')
+        @include('navs.timeline')
     
-        <h1 class="h2">メインページ</h1>
-        <p>ログイン済ユーザーのドキュメントルート</p>
+        <h1 class="h2">タイムライン</h1>
         @forelse ($posts as $post)
             <div>
                 <div class="">
