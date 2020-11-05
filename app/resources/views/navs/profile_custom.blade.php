@@ -1,18 +1,47 @@
-<header>
-    <div class="container">
-        <h1>Title(未定)</h1>
-        
-        @auth
-            
-            <span>プロフィールカスタム画面プルダウン  </span><br>
-            {{-- プロフィールカスタム画面プルダウン --}}
-            <a href="" class="btn btn-brown btn-md" role="button">保存して終了</a>
-            <a href="{{ route('profile.show_profile', ['id' => 2]) }}" class="btn-outline-danger waves-effect btn btn-md" role="button">
+@extends('navs.nav_frame')
+
+@section('navItems')
+    @if (!Auth::user())
+        <div>
+            <a href="{{ route('login') }}">
+                ログインし直す
+            </a>
+        </div>
+    @endif
+    @auth
+
+    <div class="dropdown ml-auto">
+
+        {{-- Dropdown --}}
+        <button 
+        class="btn btn-primary dropdown-toggle"
+        type="button" 
+        id="dropdownMenu4" 
+        data-toggle="dropdown"
+        aria-haspopup="true" 
+        aria-expanded="false"
+        >
+            Dropdown
+        </button>
+
+        {{-- DropdownMenu --}}
+        <div 
+        class="dropdown-menu dropdown-primary dropdown-menu-right" aria-labelledby="dropdownMenu4"
+        >
+            <a href="" class="dropdown-item">保存して終了</a>
+
+            <div class="dropdown-divider"></div>
+
+            <a 
+            href="{{ route('profile.show_profile', ['id' => Auth::id()]) }}" 
+            class="dropdown-item my-1"
+            >
                 <i class="fas fa-exclamation-triangle"></i>
                 保存せず終了
-            </a>
-            <br>
-        @endauth
-        
+            </a>            
+        </div>
+
     </div>
-</header>
+
+    @endauth
+@endsection

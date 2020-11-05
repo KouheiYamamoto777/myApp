@@ -5,9 +5,10 @@
 @section('content')
     @include('navs.create')
 
-    <h1 class="h2">2020年の記録</h1>
+    <h1 class="text-center mt-2">{{ Auth::user()->name }}'s Record.</h1>
+    <h1 class="h2 text-center">2020年の記録</h1>
     <canvas id="chart">
-        ここにグラフを描画する
+        canvad not supported...
     </canvas>
 
     <p>記録フォーム</p>
