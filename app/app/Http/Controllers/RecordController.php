@@ -13,28 +13,8 @@ class RecordController extends Controller
      */
     public function index()
     {
-        $posts = (object)[
-            (object)[
-                'name' => 'kouhei',
-                'datetime' => now(),
-                'title' => 'title1',
-                'comment' => 'comment1',
-            ],
-            (object)[
-                'name' => 'yamamoto',
-                'datetime' => now(),
-                'title' => 'title2',
-                'comment' => 'comment2',
-            ],
-            (object)[
-                'name' => 'y-kouhei',
-                'datetime' => now(),
-                'title' => 'title3',
-                'comment' => 'comment3',
-            ],
-        ];
 
-        return view('records.index', ['posts' => $posts]);
+        return view('records.index');
     }
 
     /**
