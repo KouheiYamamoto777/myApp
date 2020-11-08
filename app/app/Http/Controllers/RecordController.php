@@ -16,8 +16,8 @@ class RecordController extends Controller
      */
     public function index()
     {
-
-        return view('records.index');
+        $posts = Post::all();
+        return view('records.index', compact('posts'));
     }
 
     /**
@@ -34,6 +34,8 @@ class RecordController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Income  $income
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function store(RecordRequest $request, Income $income, Post $post)
@@ -57,7 +59,7 @@ class RecordController extends Controller
                 $outgo_assessment = '使いすぎました。';
             break;
             case $request->outgo <= 1000000:
-                $outgo_assessment = '冷や汗が出るほど使いました。';
+                $outgo_assessment = '冷や汗が出るほどでした。';
             break;
             default:
                 $outgo_assessment = '秘密です。';
@@ -79,8 +81,7 @@ class RecordController extends Controller
         // postインスタンスへのinsert処理
         // titleとbodyはnullableにしてあるので、入力がなかった時はデフォルト値を設定している
         $post->fill([
-            'user_id' => $request->user_id,
-            'income_id' => $request->user_id,
+            'user_id' => $request->user()->id,
             'title' => $request->title ?? $default_title,
             'body' => $request->comment ?? $default_comment,
             'year' => $request->year,

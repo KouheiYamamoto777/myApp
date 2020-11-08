@@ -18,7 +18,6 @@ class CreatePostsTable extends Migration
             Schema::create('posts', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-                $table->foreignId('income_id')->constrained('incomes')->onDelete('cascade');
                 $table->string('title')->nullable();
                 $table->text('body')->nullable();
                 $table->boolean('check', true);

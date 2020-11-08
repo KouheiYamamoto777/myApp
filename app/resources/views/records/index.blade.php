@@ -7,7 +7,12 @@
 @section('content')
     @include('navs.timeline')
 
-    <h1 class="h2">タイムライン(ログインユーザー専用)</h1>
-
+    <div class="container my-4">
+        @forelse ($posts as $post)
+            @include('card')
+        @empty
+            <h2 class="font-weight-normal mt-2">Not post yet...</h2>
+        @endforelse
+    </div>
 
 @endsection

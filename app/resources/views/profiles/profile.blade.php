@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('title')
-    userのプロフィール
+    {{ Auth::user()->name }}さんのプロフィール
 @endsection
 
 @section('content')
