@@ -38,8 +38,36 @@ class RecordController extends Controller
      */
     public function store(RecordRequest $request, Income $income, Post $post)
     {
-        $validated = $request->validated();
-        dd($validated);
+        // commentへの入力がなかった時に使うテンプレートのメッセージの分岐処理
+        // commentの入力があった場合には$outgo_assessmentは使用されない
+        switch($request->outgo) {
+            case $request->outgo <= 10000:
+                $outgo_assessment = 'かなり押さえることができました。';
+            break;
+            case $request->outgo <= 30000:
+                $outgo_assessment = 'ぼちぼちでした。';
+            break;
+            case $request->outgo <= 50000:
+                $outgo_assessment = '少し押さえることができました。';
+            break;
+            case $request->outgo <= 100000:
+                $outgo_assessment = '平均的でした。';
+            break;
+            case $request->outgo <= 200000:
+                $outgo_assessment = '使いすぎました。';
+            break;
+            case $request->outgo <= 1000000:
+                $outgo_assessment = '冷や汗が出るほど使いました。';
+            break;
+            default:
+                $outgo_assessment = '秘密です。';
+        }
+
+        // titleとcommentの入力がなかった場合のデフォルトテンプレート
+        $default_title   = '今月もがんばりました。';
+        $default_comment = '今月の収入は' . $request->income . '円で、クレジットカードの使用額は' . $outgo_assessment;
+
+        // incomeインスタンスへのinsert処理
         $income->fill([
             'user_id' => $request->user_id,
             'year' => $request->year,
@@ -48,11 +76,13 @@ class RecordController extends Controller
             'outgo_cre' => $request->outgo,
         ]);
 
+        // postインスタンスへのinsert処理
+        // titleとbodyはnullableにしてあるので、入力がなかった時はデフォルト値を設定している
         $post->fill([
             'user_id' => $request->user_id,
             'income_id' => $request->user_id,
-            'title' => $request->title,
-            'body' => $request->comment,
+            'title' => $request->title ?? $default_title,
+            'body' => $request->comment ?? $default_comment,
             'year' => $request->year,
             'month' => $request->month,
             'check' => (bool)$request->done,
