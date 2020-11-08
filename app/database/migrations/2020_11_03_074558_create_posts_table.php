@@ -17,10 +17,11 @@ class CreatePostsTable extends Migration
         {
             Schema::create('posts', function (Blueprint $table) {
                 $table->id();
-                $table->integer('user_id');
-                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-                $table->string('title');
-                $table->text('body');
+                $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+                $table->foreignId('income_id')->constrained('incomes')->onDelete('cascade');
+                $table->string('title')->nullable();
+                $table->text('body')->nullable();
+                $table->boolean('check', true);
                 $table->tinyInteger('year');
                 $table->tinyInteger('month');
                 $table->timestamps();

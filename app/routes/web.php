@@ -37,4 +37,6 @@ Route::name('profile.')->group(function() {
 
 // リソースフルルーティング作成
 // 投稿画面の中に新規投稿処理と更新処理を入れるので、editは除外している
-Route::resource('/records', RecordController::class)->except(['edit'])->middleware('auth');
+Route::resource('/records', RecordController::class)->only(['index', 'store', 'create', 'show', 'destroy'])->middleware('auth');
+
+Route::put('/records', [RecordController::class, 'update'])->name('records.update');
