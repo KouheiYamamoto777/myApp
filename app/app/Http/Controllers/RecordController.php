@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\Income;
+use App\Http\Requests\RecordRequest;
 use Illuminate\Http\Request;
 
 class RecordController extends Controller
@@ -33,9 +36,32 @@ class RecordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RecordRequest $request, Income $income, Post $post)
     {
-        dd($request->all());
+        $validated = $request->validated();
+        dd($validated);
+        $income->fill([
+            'user_id' => $request->user_id,
+            'year' => $request->year,
+            'month' => $request->month,
+            'income' => $request->income,
+            'outgo_cre' => $request->outgo,
+        ]);
+
+        $post->fill([
+            'user_id' => $request->user_id,
+            'income_id' => $request->user_id,
+            'title' => $request->title,
+            'body' => $request->comment,
+            'year' => $request->year,
+            'month' => $request->month,
+            'check' => (bool)$request->done,
+        ]);
+
+        $income->save();
+        $post->save();
+
+        return redirect()->route('profile.show_profile', ['id' => $request->user_id]);
     }
 
     /**

@@ -26,6 +26,8 @@
             <form action="{{ route('records.store') }}" class="range-field my-5" method="post" name="store">
                 @csrf
 
+                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+
                 <div class="text-center">
                     <h3>記録日&nbsp;:&nbsp;20
                         <select name="year" id="" class="mdb-select md-form">
@@ -42,26 +44,36 @@
                         月</h3>
                 </div>
         
+                @if ($errors->has('income'))
+                    <span class="deep-orange-text">{{ $errors->first('income') }}</span>
+                @endif
                 <div class="md-form mt-0">
                     <label for="income">今月の収入</label>
                     <input type="number" id="income" class="form-control" name="income" value="{{ old('income') }}">
                 </div>
                 
+                @if ($errors->has('outgo'))
+                    <span class="deep-orange-text">{{ $errors->first('outgo') }}</span>
+                @endif
                 <div class="md-form mt-0">
                     <label for="outgo">今月のクレジットカードの使用額</label>
                     <input type="number" id="outgo" class="form-control" name="outgo" value="{{ old('outgo') }}">
                 </div>
     
-                <div class="md-form">
-                    <label for="title">タイトル</label>
+                @if ($errors->has('title'))
+                    <span class="deep-orange-text">{{ $errors->first('title') }}</span>
+                @endif
+                <div class="md-form mb-2">
+                    <label for="title">タイトル(20文字以内.省略可)</label>
                     <input type="text" id="title" class="form-control" name="title" value="{{ old('title') }}">
                 </div>
         
-                <div class="md-form mt-1">
-                    <label for="text_area">コメントを残す</label>
-                    <textarea name="comment" id="text_area"  rows="3" class="md-textarea form-control">
-                        {{ old('comment') }}
-                    </textarea>
+                @if ($errors->has('comment'))
+                    <span class="deep-orange-text">{{ $errors->first('comment') }}</span>
+                @endif
+                <div class="md-form">
+                    <textarea id="form7" class="md-textarea form-control mt-3" rows="3" name="comment">{{ old('comment') }}</textarea>
+                    <label for="form7">コメントを残す(120文字以内.省略可)</label>
                 </div>
                 
                 <div class="custom-control custom-checkbox text-center">

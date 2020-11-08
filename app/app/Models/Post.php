@@ -14,6 +14,8 @@ class Post extends Model
         'income_id',
         'title',
         'body',
-        'check'
+        'check',
+        'year',
+        'month'
     ];
 }
