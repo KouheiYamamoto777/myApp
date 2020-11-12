@@ -82,7 +82,7 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        // ユーザー登録時にプロフィール作成 テスト中
+        // ユーザー登録時にプロフィール作成
         $profile->fill([
             'user_id' => $user->id,
             'prof_comment' => 'はじめまして',

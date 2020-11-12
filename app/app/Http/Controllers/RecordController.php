@@ -18,7 +18,7 @@ class RecordController extends Controller
     {
         $posts = Post::all()->sortByDesc('created_at');
         // dd($posts);
-        return view('records.index', compact('posts'));
+        return view('records.index')->with(['posts' => $posts]);
     }
 
     /**
@@ -30,7 +30,7 @@ class RecordController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('records.show', ['post' => $post]);
+        return view('records.show')->with(['post' => $post]);
     }
 
     /**
@@ -92,7 +92,7 @@ class RecordController extends Controller
         ]);
 
         // postインスタンスへのinsert処理
-        // titleとbodyはnullableにしてあるので、入力がなかった時はデフォルト値を設定している
+        // titleとbodyはnullableにしてあるが、入力がなかった時はデフォルト値を設定している
         $post->fill([
             'user_id' => $request->user()->id,
             'title'   => $request->title ?? $default_title,

@@ -9,7 +9,9 @@
         @include('card')
 
         <div class="text-center">
-            <a href="{{ route('profile.show_profile', []) }}" class="btn">
+            <a 
+            {{-- href="{{ route('profile.show_profile', []) }}"  --}}
+            class="btn">
                 このユーザーのプロフィールを見る
             </a>
         </div>

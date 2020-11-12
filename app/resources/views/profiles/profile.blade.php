@@ -1,16 +1,16 @@
 @extends('app')
 
 @section('title')
-    {{ Auth::user()->name }}さんのプロフィール
+    {{ $user->name }}さんのプロフィール
 @endsection
 
 @section('content')
     @include('navs.profile')
 
     <div class="container text-center">
-        <h1>ユーザープロフィール表示画面</h1>
+        <h1 class="mt-3">マイページ</h1>
         {{-- @if () --}}
-            <p>ようこそ,{{ Auth::user()->name }}さん</p>
+            <p>ようこそ,{{ $user->name }}さん</p>
         {{-- @endif --}}
 
         <canvas id="chart" style="max-width: 800px;">
