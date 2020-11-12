@@ -16,8 +16,21 @@ class RecordController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::all()->sortByDesc('created_at');
+        // dd($posts);
         return view('records.index', compact('posts'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $post = Post::find($id);
+        return view('records.show', ['post' => $post]);
     }
 
     /**
@@ -47,10 +60,10 @@ class RecordController extends Controller
                 $outgo_assessment = 'かなり押さえることができました。';
             break;
             case $request->outgo <= 30000:
-                $outgo_assessment = 'ぼちぼちでした。';
+                $outgo_assessment = '少し押さえることができました。';
             break;
             case $request->outgo <= 50000:
-                $outgo_assessment = '少し押さえることができました。';
+                $outgo_assessment = 'ぼちぼちでした。';
             break;
             case $request->outgo <= 100000:
                 $outgo_assessment = '平均的でした。';
@@ -71,10 +84,10 @@ class RecordController extends Controller
 
         // incomeインスタンスへのinsert処理
         $income->fill([
-            'user_id' => $request->user_id,
-            'year' => $request->year,
-            'month' => $request->month,
-            'income' => $request->income,
+            'user_id'   => $request->user_id,
+            'year'      => $request->year,
+            'month'     => $request->month,
+            'income'    => $request->income,
             'outgo_cre' => $request->outgo,
         ]);
 
@@ -82,28 +95,17 @@ class RecordController extends Controller
         // titleとbodyはnullableにしてあるので、入力がなかった時はデフォルト値を設定している
         $post->fill([
             'user_id' => $request->user()->id,
-            'title' => $request->title ?? $default_title,
-            'body' => $request->comment ?? $default_comment,
-            'year' => $request->year,
-            'month' => $request->month,
-            'check' => (bool)$request->done,
+            'title'   => $request->title ?? $default_title,
+            'body'    => $request->comment ?? $default_comment,
+            'year'    => $request->year,
+            'month'   => $request->month,
+            'check'   => (bool)$request->done,
         ]);
 
         $income->save();
         $post->save();
 
         return redirect()->route('profile.show_profile', ['id' => $request->user_id]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

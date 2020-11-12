@@ -1,5 +1,5 @@
 <nav 
-class="navbar navbar-expand d-flex justify-content-between"
+class="navbar navbar-expand d-flex justify-content-between sticky-top bg-white"
 >
 
     <a 

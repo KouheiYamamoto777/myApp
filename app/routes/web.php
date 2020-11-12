@@ -16,7 +16,7 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-// 認証関係ルーティング
+// 認証関係ルーティング自動生成
 Auth::routes();
 
 // 未ログインユーザーメインページ表示(未ログインユーザードキュメントルート)

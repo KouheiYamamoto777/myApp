@@ -13,7 +13,7 @@
 
         <a 
         href="{{ route('records.create') }}" 
-        class="btn btn-brown btn-md" 
+        class="btn btn-primary" 
         role="button"
         >
             <i class="fas fa-file-signature"></i>
@@ -35,22 +35,18 @@
         <div 
         class="dropdown-menu dropdown-primary dropdown-menu-right" aria-labelledby="dropdownMenu4"
         >
-
+        
             <a 
             href="{{ route('profile.show_profile', ['id' => Auth::id()]) }}" 
             class="dropdown-item"
-            >
-                マイページ
-            </a>
+            >マイページ</a>
 
             <div class="dropdown-divider"></div>
 
             <a 
             href="javascript:logout_form.submit()" class="dropdown-item my-1"
             >
-                <i class="fas fa-exclamation-triangle"></i>
-                ログアウト
-            </a>           
+                <i class="fas fa-exclamation-triangle"></i>ログアウト</a>           
 
             <form 
             action="{{ route('logout') }}" 

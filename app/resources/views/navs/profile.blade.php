@@ -13,7 +13,7 @@
 
         <a 
         href="{{ route('records.create') }}" 
-        class="btn btn-brown btn-md" 
+        class="btn btn-primary" 
         role="button"
         >
             <i class="fas fa-file-signature"></i>
