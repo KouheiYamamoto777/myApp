@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -75,11 +76,19 @@ class RegisterController extends Controller
     }
 
     // ユーザー登録処理をオーバーライド(独自に改変)
-    public function register(Request $request)
+    public function register(Request $request, Profile $profile)
     {
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
+
+        // ユーザー登録時にプロフィール作成 テスト中
+        $profile->fill([
+            'user_id' => $user->id,
+            'prof_comment' => 'はじめまして',
+            'prof_image' => null,
+            'cre_limit' => null,
+        ])->save();
 
         $this->guard()->login($user);
 
