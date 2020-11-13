@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Income;
 use App\Http\Requests\RecordRequest;
+use App\Http\Requests\RecordPostCommentRequest;
 use Illuminate\Http\Request;
 
 class RecordController extends Controller
@@ -140,6 +141,11 @@ class RecordController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function postComment(RecordPostCommentRequest $request)
+    {
+        
     }
 
 }

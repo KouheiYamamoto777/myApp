@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class RecordPostCommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,19 +24,23 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string', 'regex:/^[a-zA-Z0-9]+$/'],
-            'password_confirmation' => ['required', 'string', 'confirmed'],
+            'comment' => ['required', 'max:20', 'string'],
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'お名前',
-            'email' => 'メールアドレス',
-            'password' => 'パスワード',
+            'comment' => 'コメント',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'comment.required' => ':attributeは必須項目です',
+            'comment.max' => ':attributeは20文字以内です',
+            'comment.string' => ':attributeは文字列である必要があります',
         ];
     }
 }
