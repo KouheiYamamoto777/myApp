@@ -7,13 +7,13 @@
 
     <div class="container">
         <h1 
-        class="text-center mt-2"
+        class="text-center mt-2 h1-responsive"
         >  
             記録をつけましょう
         </h1>
     
         <h2
-        class="h2 text-center"
+        class="h2 text-center h2-responsive"
         >
             2020年の記録
         </h1>
@@ -29,7 +29,7 @@
                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 
                 <div class="text-center">
-                    <h3>記録日&nbsp;:&nbsp;20
+                    <h3 class="h3-responsive">記録日&nbsp;:&nbsp;20
                         <select name="year" id="" class="mdb-select md-form">
                             <option value="20" selected>20</option>
                             <option value="21">21</option>

@@ -1,7 +1,7 @@
 <div class="card mb-3">
     <div class="card-body">
 
-        <h4 class="card-title mb-4">
+        <h4 class="card-title mb-4 h4-responsive">
             <a 
             href="{{ url('/records', $post->id) }}" 
             class="text-dark"

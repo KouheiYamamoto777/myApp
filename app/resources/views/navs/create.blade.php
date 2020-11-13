@@ -2,13 +2,7 @@
 
 @section('navItems')
 
-    @unless (Auth::check())
-        <div>
-            <a href="{{ route('login') }}">
-                再ログインが必要です
-            </a>
-        </div>
-    @endunless
+    @include('navs.auth_check')
     
     @auth
 

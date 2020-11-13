@@ -10,7 +10,7 @@
 
         <div class="text-center">
             <a 
-            {{-- href="{{ route('profile.show_profile', []) }}"  --}}
+            href="{{ route('profile.show_profile', $post->id) }}" 
             class="btn">
                 このユーザーのプロフィールを見る
             </a>

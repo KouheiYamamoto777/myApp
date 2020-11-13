@@ -11,7 +11,7 @@
         @forelse ($posts as $post)
             @include('card')
         @empty
-            <h2 class="font-weight-normal mt-2">Not post yet...</h2>
+            <h2 class="font-weight-normal mt-2 indigo-text">記録をつけましょう</h2>
         @endforelse
     </div>
 

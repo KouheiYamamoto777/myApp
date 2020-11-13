@@ -8,10 +8,11 @@
     @include('navs.profile')
 
     <div class="container text-center">
-        <h1 class="mt-3">マイページ</h1>
-        {{-- @if () --}}
-            <p>ようこそ,{{ $user->name }}さん</p>
-        {{-- @endif --}}
+        <h1 class="mt-3 h1-responsive">{{ $user->name }}さんのマイページ</h1>
+
+        @if (Auth::id() === $user->id)
+            <p>おかえりなさい、{{ $user->name }}さん</p>
+        @endif
 
         <canvas id="chart" style="max-width: 800px;">
             canvas not supported...

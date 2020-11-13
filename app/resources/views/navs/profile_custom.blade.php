@@ -1,13 +1,9 @@
 @extends('navs.nav_frame')
 
 @section('navItems')
-    @if (!Auth::user())
-        <div>
-            <a href="{{ route('login') }}">
-                ログインし直す
-            </a>
-        </div>
-    @endif
+
+    @include('navs.auth_check')
+
     @auth
 
     <div class="dropdown ml-auto">
