@@ -13,7 +13,7 @@ class RecordController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * タイムライン表示
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -24,17 +24,21 @@ class RecordController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * 記録詳細画面表示処理
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
+        // idから記録を取得
         $post = Post::find($id);
+
+        // idから記録につけられたコメントを取得
         $comments = Comment::where('post_id', $id)->get();
+
         return view('records.show')->with([
-            'post' => $post,
-            'comments' => $comments,
+                'post' => $post,
+                'comments' => $comments,
             ]);
     }
 
@@ -50,7 +54,7 @@ class RecordController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * 記録作成処理
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Income  $income
      * @param  \App\Models\Post  $post
@@ -78,6 +82,9 @@ class RecordController extends Controller
             break;
             case $request->outgo <= 1000000:
                 $outgo_assessment = '冷や汗が出るほどでした。';
+            break;
+            case $request->outgo > 1000000:
+                $outgo_assessment = '教えられそうにありません。';
             break;
             default:
                 $outgo_assessment = '秘密です。';

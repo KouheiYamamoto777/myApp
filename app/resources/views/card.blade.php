@@ -3,7 +3,7 @@
 
         <h4 class="card-title mb-4 h4-responsive">
             <a 
-            href="{{ url('/records', $post->id) }}" 
+            href="{{ route('records.show', $post->id) }}"
             class="text-dark"
             >
                 {{ $post->title }}

@@ -9,7 +9,7 @@
         
         <div class="text-center">
             <a 
-            href="{{ route('profile.show_profile', $post->id) }}" 
+            href="{{ route('profile.show_profile', $post->user_id) }}"
             class="btn mb-3">
             このユーザーの頑張りを見る
         </a>

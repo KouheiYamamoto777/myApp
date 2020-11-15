@@ -42,5 +42,4 @@ Route::resource('/records', RecordController::class)->only(['index', 'store', 'c
 Route::put('/records', [RecordController::class, 'update'])->name('records.update');
 
 // 記録詳細画面でのコメント機能に関するルーティング
-Route::get('/records/{id}', [RecordController::class, 'showComment'])->name('records.show_comment');
 Route::post('/records/{id}', [RecordController::class, 'postComment'])->name('records.post_comment');
