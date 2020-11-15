@@ -18,11 +18,15 @@
             2020年の記録
         </h1>
     
-        <canvas id="chart" style="max-width: 800px;">
-            canvas not supported...
-        </canvas>
+        <div class="w-75 mx-auto">
+            <canvas 
+                id="chart"
+            >
+                canvas not supported...
+            </canvas>
+        </div>
     
-        <div class="my-2 mx-4">
+        <div class="my-2 mx-auto w-75">
             <form action="{{ route('records.store') }}" class="range-field my-5" method="post" name="store">
                 @csrf
 

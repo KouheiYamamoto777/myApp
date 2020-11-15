@@ -14,9 +14,13 @@
             <p>おかえりなさい、{{ $user->name }}さん</p>
         @endif
 
-        <canvas id="chart" style="max-width: 800px;">
-            canvas not supported...
-        </canvas>
+        <div class="w-75 mx-auto">
+            <canvas 
+                id="chart"
+            >
+                canvas not supported...
+            </canvas>
+        </div>
     </div>
 
 @endsection

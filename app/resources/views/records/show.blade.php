@@ -20,18 +20,27 @@
             <h3 class="h3-responsive text-left">コメント</h3>
     
             <ul class="list-group list-group-flush text-left">
-                <li class="list-group-item"><i class="fas fa-user-circle"></i>&nbsp;おめでとう</li>
-                <li class="list-group-item"><i class="fas fa-user-circle"></i>&nbsp;おめでとう</li>
-                <li class="list-group-item"><i class="fas fa-user-circle"></i>&nbsp;おめでとう</li>
+                @forelse ($comments as $comment)
+                    <li 
+                        class="list-group-item
+                        @if ($comment->user_id === $post->user_id)
+                            text-danger
+                        @endif
+                        "
+                    >{{ $comment->comment }}</li>    
+                @empty
+                    <li class="list-group-item">コメントはありません</li>
+                @endforelse
             </ul>
+
         </div>
 
         
         <div>
-            <form action="" method="post">
+            <form action="{{ route('records.post_comment', $post->id) }}" method="post">
                 @csrf
                 <div class="md-form">
-                    <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                    {{-- <input type="hidden" name="user_id" value="{{ Auth::id() }}"> --}}
                     <input type="hidden" name="post_id" value="{{ $post->id }}">
                 </div>
 
@@ -41,7 +50,7 @@
                 </div>
 
                 <button class="btn btn-indigo" type="submit">コメントする</button>
-                
+
             </form>
         </div>
             

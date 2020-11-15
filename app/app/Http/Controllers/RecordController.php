@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Income;
-use App\Http\Requests\RecordRequest;
+use App\Models\Comment;
+use App\Http\Requests\RecordStoreRequest;
 use App\Http\Requests\RecordPostCommentRequest;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,6 @@ class RecordController extends Controller
     public function index()
     {
         $posts = Post::all()->sortByDesc('created_at');
-        // dd($posts);
         return view('records.index')->with(['posts' => $posts]);
     }
 
@@ -31,7 +31,11 @@ class RecordController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('records.show')->with(['post' => $post]);
+        $comments = Comment::where('post_id', $id)->get();
+        return view('records.show')->with([
+            'post' => $post,
+            'comments' => $comments,
+            ]);
     }
 
     /**
@@ -52,7 +56,7 @@ class RecordController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function store(RecordRequest $request, Income $income, Post $post)
+    public function store(RecordStoreRequest $request, Income $income, Post $post)
     {
         // commentへの入力がなかった時に使うテンプレートのメッセージの分岐処理
         // commentの入力があった場合には$outgo_assessmentは使用されない
@@ -143,9 +147,15 @@ class RecordController extends Controller
         //
     }
 
-    public function postComment(RecordPostCommentRequest $request)
+    public function postComment(RecordPostCommentRequest $request, Comment $comment)
     {
-        
+        $comment->fill([
+            'user_id' => $request->user()->id,
+            'post_id' => $request->post_id,
+            'comment' => $request->comment,
+        ])->save();
+
+        return redirect()->route('records.show', $request->post_id);
     }
 
 }
