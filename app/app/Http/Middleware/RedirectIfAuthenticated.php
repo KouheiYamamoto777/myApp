@@ -23,7 +23,8 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                // ログイン後、sessionの有効期限が切れていない場合、プロフィールにリダイレクトする処理(ページを離れた場合など)
+                return redirect()->route('profile.show_profile', ['id' => $request->id()]);
             }
         }
 

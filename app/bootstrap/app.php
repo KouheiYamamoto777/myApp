@@ -41,6 +41,16 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+/**
+ * GraphQL
+ * https://github.com/rebing/graphql-laravel
+ * 上記を参考に追加
+ */
+
+$app->register(
+    Rebing\GraphQL\GraphQLLumenServiceProvider::class,
+);
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application
