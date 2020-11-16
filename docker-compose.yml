@@ -13,7 +13,6 @@ services:
             - '.:/var/www/html'
         tty: true
         stdin_open: true
-        # nginxとphpの依存関係を設定
         depends_on:
             - app
     app:
@@ -21,7 +20,6 @@ services:
         image: "php:${PHP_VERSION}"
         volumes:
             - '.:/var/www/html'
-        # phpとmysqlの依存関係を設定
         depends_on:
             - db
     db:
@@ -40,3 +38,11 @@ services:
         ports:
             - '8025:8025'
             - '1025:1025'
+    graphiql:
+        image: npalm/graphiql
+        ports:
+            - '4000:4000'
+        depends_on: 
+            - db
+        links:
+            - db
