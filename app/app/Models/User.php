@@ -61,7 +61,7 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function income(): HasMany
+    public function incomes(): HasMany
     {
         return $this->hasMany(Income::class);
     }
