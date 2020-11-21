@@ -81,7 +81,7 @@
                 </div>
                 
                 <div class="custom-control custom-checkbox text-center">
-                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember" name="done" value="0">
+                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember" name="published" value="0">
                     <label class="custom-control-label" for="defaultLoginFormRemember">タイムラインに投稿しない</label>
                 </div>
                 

@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
                 $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
                 $table->string('title')->nullable();
                 $table->text('body')->nullable();
-                $table->boolean('check', true);
+                $table->boolean('published', true);
                 $table->tinyInteger('year');
                 $table->tinyInteger('month');
                 $table->timestamps();
