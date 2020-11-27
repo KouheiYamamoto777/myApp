@@ -33,13 +33,13 @@
 
                 <div class="text-center">
                     <h3 class="h3-responsive">記録日&nbsp;:&nbsp;20
-                        <select name="year" id="" class="mdb-select md-form">
+                        <select name="year" id="year" class="mdb-select md-form">
                             <option value="20" selected>20</option>
                             <option value="21">21</option>
                             <option value="22">22</option>
                         </select>
                         年-
-                        <select name="month" id="" class="mdb-select md-form">
+                        <select name="month" id="month" class="mdb-select md-form">
                             @for ($i = 1; $i <= 12; $i++)
                                 <option value="{{ $i }}">{{ $i }}</option>
                             @endfor
