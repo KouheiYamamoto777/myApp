@@ -13,3 +13,7 @@ npm-debug.log
 yarn-error.log
 _lighthouse_ide_helper.php
 schema-directives.graphql
+
+public/css/app.css
+public/js/app.js
+public/mix-manifest.json
