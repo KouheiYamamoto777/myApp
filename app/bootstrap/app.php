@@ -48,8 +48,16 @@ $app->singleton(
  */
 
 $app->register(
-    Rebing\GraphQL\GraphQLLumenServiceProvider::class,
+    \Rebing\GraphQL\GraphQLLumenServiceProvider::class,
+    \Nuwave\Lighthouse\LighthouseServiceProvider::class,
 );
+
+/**
+ * Lighthouse
+ * https://lighthouse-php.com/4.18/getting-started/installation.html#publish-the-default-schema
+ * 上記を参考に追加
+ */
+
 
 /*
 |--------------------------------------------------------------------------

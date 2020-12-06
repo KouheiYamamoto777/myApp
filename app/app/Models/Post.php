@@ -18,7 +18,7 @@ class Post extends Model
         'income_id',
         'title',
         'body',
-        'check',
+        'published',
         'year',
         'month'
     ];

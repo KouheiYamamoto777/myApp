@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Ajax\IncomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,7 @@ Route::put('/records', [RecordController::class, 'update'])->name('records.updat
 
 // 記録詳細画面でのコメント機能に関するルーティング
 Route::post('/records/{id}', [RecordController::class, 'postComment'])->name('records.post_comment');
+
+// テストルーティング
+Route::get('/ajax/incomes', [IncomeController::class, 'index']);
+// Route::get('/graphql', [IncomeController::class, 'getJson']);

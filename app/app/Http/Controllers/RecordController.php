@@ -111,7 +111,7 @@ class RecordController extends Controller
             'body'    => $request->comment ?? $default_comment,
             'year'    => $request->year,
             'month'   => $request->month,
-            'check'   => (bool)$request->done,
+            'published'   => (bool)$request->published,
         ]);
 
         $income->save();

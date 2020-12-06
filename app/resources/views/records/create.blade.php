@@ -18,12 +18,11 @@
             2020年の記録
         </h1>
     
-        <div class="w-75 mx-auto">
-            <canvas 
-                id="chart"
-            >
-                canvas not supported...
-            </canvas>
+        <div class="w-75 mx-auto" id="app">
+            <canvas-component
+            :user-id={{ Auth::id() }}
+            :year=20
+            ></canvas-component>
         </div>
     
         <div class="my-2 mx-auto w-75">
@@ -34,13 +33,13 @@
 
                 <div class="text-center">
                     <h3 class="h3-responsive">記録日&nbsp;:&nbsp;20
-                        <select name="year" id="" class="mdb-select md-form">
+                        <select name="year" id="year" class="mdb-select md-form">
                             <option value="20" selected>20</option>
                             <option value="21">21</option>
                             <option value="22">22</option>
                         </select>
                         年-
-                        <select name="month" id="" class="mdb-select md-form">
+                        <select name="month" id="month" class="mdb-select md-form">
                             @for ($i = 1; $i <= 12; $i++)
                                 <option value="{{ $i }}">{{ $i }}</option>
                             @endfor
@@ -81,7 +80,7 @@
                 </div>
                 
                 <div class="custom-control custom-checkbox text-center">
-                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember" name="done" value="0">
+                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember" name="published" value="0">
                     <label class="custom-control-label" for="defaultLoginFormRemember">タイムラインに投稿しない</label>
                 </div>
                 
@@ -89,63 +88,4 @@
         </div>
     </div>
     
-@endsection
-
-@section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css"></script>
-    <script>
-        (function() {
-            'use strict';
-
-            var type = 'bar';
-            var data = {
-                labels: [4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3],
-                datasets: [
-                        {
-                            type: 'line',
-                            data: [30000, 20000, 23000, 30000, 18000, 19400, 35000, 17300, 40000, 29000, 27000, 21000],
-                            borderColor: 'hsla(0, 60%, 60%, 0.8)',
-                            borderWidth: 3,
-                            fill: false,
-                        },
-                        {
-                            label: 'Yuki',
-                            data: [100000, 203000, 130000, 260000, 154000, 182000, 134000, 132000, 145000, 136000, 201000, 108000],
-                            backgroundColor: 'hsla(210, 60%, 60%, 0.6)',
-                            borderWidth: 0,
-                        },
-                    ],
-            };
-
-            var options = {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 200000,
-                            stepSize: 100000,
-
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            callback: function(value) {
-                                return value + '月';
-                            }
-                        }
-                    }]
-                },
-                legend: {
-                    position: false,
-                },
-            };
-            var ctx = document.getElementById('chart').getContext('2d');
-
-            var chart = new Chart(ctx, {
-                type: type,
-                data: data,
-                options: options,
-            });
-        })();
-    </script>
 @endsection

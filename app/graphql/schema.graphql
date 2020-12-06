@@ -1,0 +1,57 @@
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+
+type Query {
+    users: [User!]! @all
+    user(id: ID @eq): User @find
+    dataForYear(year: Int @eq): [Income!] @all
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    posts: [Post!] @hasMany
+    incomes: [Income!] @hasMany
+    comments: [Comment!] @hasMany(relation: "comment") 
+    profile: Profile @hasOne
+    dataForYear(year: Int @eq): [Income!] @all
+}
+
+type Profile @model(class: "\\App\\Models\\Profile") {
+    id: ID!
+    userId: Int! @rename(attribute: "user_id")
+    profComment: String @rename(attribute: "prof_comment")
+    creLimit: Int @rename(attribute: "cre_limit")
+}
+
+type Post @model(class: "\\App\\Models\\Post") {
+    id: ID!
+    userId: Int! @rename(attribute: "user_id")
+    title: String!
+    body: String!
+    published: Boolean!
+    comments: [Comment!]
+}
+
+type Comment @model(class: "\\App\\Models\\Comment") {
+    id: ID!
+    userId: Int! @rename(attribute: "user_id")
+    postId: Int! @rename(attribute: "post_id")
+    comment: String!
+}
+
+type Income @model(class: "\\App\\Models\\Income") {
+    id: ID!
+    user_id: Int! @rename(attribute: "user_id")
+    year: Int!
+    month: Int!
+    income: Int!
+    outgo: Int! @rename(attribute: "outgo_cre")
+}
